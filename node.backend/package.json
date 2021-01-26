@@ -1,0 +1,131 @@
+{
+    "name": "node.backend",
+    "description": "backend by node",
+    "version": "1.0.0",
+    "author": "hunjuly@gmail.com",
+    "private": true,
+    "main": "output/bin",
+    "scripts": {
+        "start": "node output/bin $SERVICE_PORT",
+        "build": "npm-run-all -p build:*",
+        "build:bundle": "webpack --watch --mode development",
+        "build:nodemon": "nodemon output/bin 4000",
+        "pack": "npm-run-all -s pack:*",
+        "pack:clean": "rm -rf output",
+        "pack:prettier": "prettier -c --write src/**",
+        "pack:eslint": "eslint src/**",
+        "pack:jest": "jest --no-cache --coverage",
+        "pack:compile": "tsc --noEmit true",
+        "pack:bundle": "webpack --mode production"
+    },
+    "dependencies": {
+        "@babel/runtime": "latest",
+        "compression": "latest",
+        "errorhandler": "latest",
+        "express": "latest",
+        "common": "file:../node.common"
+    },
+    "devDependencies": {
+        "typescript": "latest",
+        "@types/compression": "latest",
+        "@types/errorhandler": "latest",
+        "@types/express": "latest",
+        "@types/superagent": "latest",
+        "babel-jest": "latest",
+        "babel-loader": "latest",
+        "@babel/preset-env": "latest",
+        "@babel/core": "latest",
+        "@babel/preset-typescript": "latest",
+        "@babel/plugin-proposal-class-properties": "latest",
+        "@babel/plugin-proposal-decorators": "latest",
+        "@babel/plugin-transform-runtime": "latest",
+        "@typescript-eslint/eslint-plugin": "latest",
+        "@typescript-eslint/parser": "latest",
+        "eslint": "latest",
+        "eslint-config-prettier": "latest",
+        "eslint-plugin-import": "latest",
+        "eslint-plugin-node": "latest",
+        "eslint-plugin-promise": "latest",
+        "superagent": "latest",
+        "webpack": "latest",
+        "webpack-cli": "latest",
+        "webpack-node-externals": "latest",
+        "clean-webpack-plugin": "latest"
+    },
+    "babel": {
+        "presets": [
+            "@babel/preset-typescript",
+            "@babel/preset-env"
+        ],
+        "plugins": [
+            [
+                "@babel/plugin-proposal-decorators",
+                {
+                    "legacy": true
+                }
+            ],
+            "@babel/plugin-proposal-class-properties",
+            [
+                "@babel/plugin-transform-runtime",
+                {
+                    "regenerator": true
+                }
+            ]
+        ]
+    },
+    "eslintConfig": {
+        "extends": [
+            "eslint:recommended",
+            "plugin:@typescript-eslint/recommended",
+            "plugin:@typescript-eslint/recommended-requiring-type-checking",
+            "prettier"
+        ],
+        "env": {
+            "es2020": true,
+            "node": true,
+            "jest": true,
+            "commonjs": true
+        },
+        "parser": "@typescript-eslint/parser",
+        "parserOptions": {
+            "project": "./tsconfig.json",
+            "ecmaVersion": 2020,
+            "sourceType": "module"
+        },
+        "plugins": [
+            "@typescript-eslint",
+            "import",
+            "node",
+            "promise"
+        ],
+        "ignorePatterns": [
+            "**/*.js"
+        ],
+        "rules": {
+            "@typescript-eslint/no-unused-vars": [
+                "error",
+                {
+                    "argsIgnorePattern": "^_"
+                }
+            ]
+        }
+    },
+    "jest": {
+        "testEnvironment": "node",
+        "verbose": true,
+        "roots": [
+            "<rootDir>/src"
+        ],
+        "testMatch": [
+            "<rootDir>/src/**/*.test.ts"
+        ],
+        "collectCoverageFrom": [
+            "<rootDir>/src/**/*.ts",
+            "!<rootDir>/src/**/*.test.ts"
+        ],
+        "coverageDirectory": "output/coverage",
+        "coverageReporters": [
+            "lcov"
+        ]
+    }
+}

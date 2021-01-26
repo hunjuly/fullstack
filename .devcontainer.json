@@ -1,0 +1,18 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.122.1/containers/docker-existing-dockerfile
+{
+    "image": "node:lts-alpine",
+    "extensions": [
+		"dbaeumer.vscode-eslint",
+		"ms-azuretools.vscode-docker",
+		"esbenp.prettier-vscode",
+		"firsttris.vscode-jest-runner"
+	],
+    "mounts": ["source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"],
+    "remoteEnv": {
+        "HOST_PATH": "${localWorkspaceFolder}"
+    },
+    "postCreateCommand": "sh workspace.sh created",
+    "postAttachCommand": "sh workspace.sh attached",
+    "postStartCommand": "sh workspace.sh started"
+}
