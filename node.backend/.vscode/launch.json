@@ -9,7 +9,7 @@
             "request": "launch",
             "console": "integratedTerminal",
             "runtimeExecutable": "npm",
-            "runtimeArgs": ["run", "build"],
+            "runtimeArgs": ["run", "watch"],
             "skipFiles": ["<node_internals>/**"],
             "type": "pwa-node"
         }

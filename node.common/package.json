@@ -7,13 +7,12 @@
     "main": "output/lib",
     "types": "output/types",
     "scripts": {
-        "build": "tsc",
-        "pack": "npm-run-all -s pack:*",
-        "pack:clean": "rm -rf output",
-        "pack:prettier": "prettier -c --write src/**",
-        "pack:eslint": "eslint src/**",
-        "pack:jest": "jest --no-cache --coverage",
-        "pack:compile": "tsc"
+        "compile": "tsc",
+        "build": "npm-run-all -s build:* compile",
+        "build:clean": "rm -rf output",
+        "build:prettier": "prettier -c --write src/**",
+        "build:eslint": "eslint src/**",
+        "build:jest": "jest --no-cache --coverage"
     },
     "dependencies": {
         "@babel/runtime": "latest",

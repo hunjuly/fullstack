@@ -7,16 +7,16 @@
     "main": "output/bin",
     "scripts": {
         "start": "node output/bin $SERVICE_PORT",
-        "build": "npm-run-all -p build:*",
-        "build:bundle": "webpack --watch --mode development",
-        "build:nodemon": "nodemon output/bin 4000",
-        "pack": "npm-run-all -s pack:*",
-        "pack:clean": "rm -rf output",
-        "pack:prettier": "prettier -c --write src/**",
-        "pack:eslint": "eslint src/**",
-        "pack:jest": "jest --no-cache --coverage",
-        "pack:compile": "tsc --noEmit true",
-        "pack:bundle": "webpack --mode production"
+        "watch": "npm-run-all -p watch:*",
+        "watch:bundle": "webpack --watch --mode development",
+        "watch:nodemon": "nodemon output/bin 4000",
+        "build": "npm-run-all -s build:*",
+        "build:clean": "rm -rf output",
+        "build:prettier": "prettier -c --write src/**",
+        "build:eslint": "eslint src/**",
+        "build:jest": "jest --no-cache --coverage",
+        "build:compile": "tsc --noEmit true",
+        "build:bundle": "webpack --mode production"
     },
     "dependencies": {
         "@babel/runtime": "latest",
